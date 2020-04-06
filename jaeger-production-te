@@ -35,7 +35,7 @@ items:
           app.kubernetes.io/component: collector
         annotations:
           prometheus.io/scrape: "true"
-          prometheus.io/port: "14268"
+          prometheus.io/port: "14269"
       spec:
         containers:
         - image: jaegertracing/jaeger-collector:1.9.0
@@ -44,7 +44,7 @@ items:
           ports:
           - containerPort: 14267
             protocol: TCP
-          - containerPort: 14268
+          - containerPort: 14269
             protocol: TCP
           - containerPort: 9411
             protocol: TCP
@@ -83,9 +83,9 @@ items:
       protocol: TCP
       targetPort: 14267
     - name: jaeger-collector-http
-      port: 14268
+      port: 14269
       protocol: TCP
-      targetPort: 14268
+      targetPort: 14269
     - name: jaeger-collector-zipkin
       port: 9411
       protocol: TCP
@@ -132,14 +132,14 @@ items:
           app.kubernetes.io/component: query
         annotations:
           prometheus.io/scrape: "true"
-          prometheus.io/port: "16686"
+          prometheus.io/port: "16687"
       spec:
         containers:
         - image: jaegertracing/jaeger-query:1.9.0
           name: jaeger-query
           args: ["--config-file=/conf/query.yaml"]
           ports:
-          - containerPort: 16686
+          - containerPort: 16687
             protocol: TCP
           readinessProbe:
             httpGet:
@@ -196,7 +196,7 @@ items:
           app.kubernetes.io/component: agent
         annotations:
           prometheus.io/scrape: "true"
-          prometheus.io/port: "5778"
+          prometheus.io/port: "14271"
       spec:
         containers:
         - name: jaeger-agent
@@ -212,7 +212,7 @@ items:
             protocol: UDP
           - containerPort: 6832
             protocol: UDP
-          - containerPort: 5778
+          - containerPort: 14271
             protocol: TCP
         hostNetwork: true
         dnsPolicy: ClusterFirstWithHostNet
